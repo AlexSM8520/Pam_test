@@ -1,28 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {GetLista} from '../ViewModel/ListaViewModel.ts';
 import Loading from '../../components/Loading.tsx';
+import AgendaListItem from '../../components/AgendaListItem.tsx';
 
-const EmployeessListView = () => {
+const ListaView = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [lista, setLista] = useState<object>([]);
-
-  function formatDate(dateStr) {
-    const date = new Date(dateStr);
-
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-
-    return `${day}/${month}/${year}`;
-  }
+  const [lista, setLista] = useState<object[]>([]);
 
   useEffect(() => {
     const GettingList = async () => {
       try {
         const response = await GetLista();
         setLista(response);
-      } catch (e){
+      } catch (e) {
         setLista([]);
         console.log(e);
       } finally {
@@ -36,23 +27,15 @@ const EmployeessListView = () => {
     <ScrollView>
       <View style={style.container}>
         {isLoading ? (
-          Object.values(lista).map((item, index) => (
-            <View style={style.container_List} key={index}>
-              <View style={style.pictureContainer}>
-                {/*<Image source={{uri: item.avatar}} style={style.pictureStyle} />*/}
-                {/*aparentemente las imagenes ya no estan es las direcciones que el endpoind provee,*/}
-                <Image source={{uri: "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"}} style={style.pictureStyle} />
-              </View>
-              <View>
-                <Text style={style.textStyle}>{item?.name}</Text>
-                <Text style={style.textStyle}>
-                  {formatDate(item.createdAt)}
-                </Text>
-              </View>
-            </View>
+          lista.map((item, index) => (
+            <AgendaListItem
+              name={item?.name}
+              date={item.createdAt}
+              key={index}
+            />
           ))
         ) : (
-          <Loading />
+          <Loading id={"loading"} />
         )}
       </View>
     </ScrollView>
@@ -118,4 +101,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default EmployeessListView;
+export default ListaView;

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
-  Dimensions,
   Modal,
   ScrollView,
   StyleSheet,
@@ -80,6 +79,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   itemList: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width:"100%",
     marginBottom: 20,
   },
   modalContainer: {

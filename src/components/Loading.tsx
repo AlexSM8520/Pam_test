@@ -1,9 +1,14 @@
 import React from 'react';
 import {View, ActivityIndicator, Text, Dimensions} from 'react-native';
 
-const Loading = () => {
+interface propLoadings {
+  id: string;
+}
+
+const Loading = ({id}: propLoadings) => {
   return (
     <View
+      testID={id}
       style={{
         flex: 1,
         backgroundColor: '#fff',

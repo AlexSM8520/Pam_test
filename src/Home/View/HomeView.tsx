@@ -6,12 +6,14 @@ const HomeView = ({navigation: navigation}) => {
     <View style={style.container}>
       <Text style={style.text_header}>Prueba Tecnica</Text>
       <TouchableOpacity
+        testID={'btnTask'}
         style={style.buttonStyle}
         onPress={() => navigation.navigate('Task')}>
         <Text style={style.textStyle}>"Task"</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
+        testID={'btnList'}
         style={style.buttonStyle}
         onPress={() => navigation.navigate('List')}>
         <Text style={style.textStyle}>"Listados"</Text>

@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
 interface ItemProps {
@@ -6,9 +6,9 @@ interface ItemProps {
   text: string;
 }
 
-const TaskItem = ({text, key}: ItemProps) => {
+const TaskItem = ({text}: ItemProps) => {
   return (
-    <View style={style.container_List} key={key}>
+    <View style={style.container_List} >
       <View style={style.nameContainer}>
         <Text style={style.textStyle}>{text}</Text>
       </View>
@@ -20,8 +20,7 @@ const style = StyleSheet.create({
   container_List: {
     flexDirection: 'row',
     height: 50,
-    width: Dimensions.get("window").width - 40,
-    marginHorizontal: '5%',
+    width: '100%',
     borderWidth: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
